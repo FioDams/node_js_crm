@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mongo:latest
+    container_name: db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    # restart: always
+    volumes:
+      - ./server:/app
+    ports:
+      - "7700:7700"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=developement
+      - PORT=7700
+      # - MONGODB_URI=mongodb://root:example@mongodb:27017/mydatabase?authSource=admin
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: frontend
+  #   # restart: always
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - backend
+volumes:
+  mongodb_data:
