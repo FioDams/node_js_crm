@@ -1,4 +1,9 @@
 /* src/styles/navbar.css */
+:root {
+    --primary-color: #0277bd;
+    --primary-color-dark: color-mix(in srgb, var(--primary-color), black 20%);
+    --primary-color-light: color-mix(in srgb, var(--primary-color), white 20%);
+}
 
 * {
     margin: 0;
@@ -12,7 +17,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background-color: black;
+    background-color: var(--primary-color-dark);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     padding: 0px 7%;
     display: flex;

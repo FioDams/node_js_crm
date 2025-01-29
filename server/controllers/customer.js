@@ -30,7 +30,7 @@ export const getCustomers = async (req, res, next) => {
     const userId = req.params.userId;
 
     try {
-        const customers = await Customer.find({ compagny: userId, isActive: true });
+        const customers = await Customer.find({ company: userId, isActive: true, deletedAt: null });
         res.status(200).json({ customers });
     } catch (err) {
         next(err);

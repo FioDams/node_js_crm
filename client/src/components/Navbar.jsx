@@ -28,16 +28,20 @@ const Navbar = () => {
       </label>
       <nav className="navbar">
         <ul>
-          <Link to="/create">
-            <li>
-              <p>Add Customers</p>
-            </li>
-          </Link>
-          <Link to="/">
-            <li>
-              <p>All Customers</p>
-            </li>
-          </Link>
+          {user && (
+            <>
+              <Link to="/create">
+                <li>
+                  <p>Add Customers</p>
+                </li>
+              </Link>
+              <Link to="/">
+                <li>
+                  <p>All Customers</p>
+                </li>
+              </Link>
+            </>
+          )}
           {user ? (
             <>
               <Link to={`/user/${user._id}`}>
@@ -54,6 +58,11 @@ const Navbar = () => {
               <Link to="/register">
                 <li>
                   <p>Register</p>
+                </li>
+              </Link>
+              <Link to="/login">
+                <li>
+                  <p>Login</p>
                 </li>
               </Link>
             </>
